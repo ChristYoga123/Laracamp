@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -16,9 +17,7 @@ Route::middleware('guest')->group(function () {
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('/login', function() {
-        return view('login');
-    })->name('login');
+    Route::get('/login', [UserController::class, 'login'])->name('login');
 
     Route::get('login/admin', [AuthenticatedSessionController::class, 'create'])
     ->name('login-admin');
